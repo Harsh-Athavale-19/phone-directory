@@ -2,20 +2,31 @@ import React, { Component } from "react";
 import Header from "./Header.js";
 import "./App.css";
 
+
+ // let subscribers = [
+    //     { id: 1, name: "Shilpa", phone: "8888888888" },
+    //     { id: 2, name: "Srishti", phone: "9999999999" },
+    // ];
+
+    // clickHandler(message) {
+    //     alert(message);
+    // }
+
 class App extends Component {
 
-  clickHandler(message){
-    alert(message)
+  constructor(){
+    super()
+    this.state ={
+      subscribersListToShow:[]
+    }
   }
-    render() {
-        let subscribers = [
-            { id: 1, name: "Shilpa", phone: "8888888888" },
-            { id: 2, name: "Srishti", phone: "9999999999" },
-        ];
+   
 
+
+    render() {
         return (
             <div>
-                <Header heading ="Phone Directory"/>
+                <Header heading="Phone Directory" />
                 <div className="component-body-container">
                     <button className="custom-btn add-btn">Add</button>
 
@@ -28,13 +39,19 @@ class App extends Component {
                         <span className="grid-item ">8888888888</span>
                     </div> */}
 
-                    {subscribers.map((sub) => {
+                    {this.state.subscribersListToShow.map((sub) => {
                         return (
                             <div key={sub.id} className="grid-container">
                                 <span className="grid-item ">{sub.name}</span>
                                 <span className="grid-item ">{sub.phone}</span>
                                 <span className="grid-item action-btn-container">
-                                    <button className="custom-btn delete-btn" onClick={this.clickHandler.bind(this,"Delete Clicked")}>
+                                    <button
+                                        className="custom-btn delete-btn"
+                                        onClick={this.clickHandler.bind(
+                                            this,
+                                            "Delete Clicked"
+                                        )}
+                                    >
                                         Delete
                                     </button>
                                 </span>
