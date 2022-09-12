@@ -36,9 +36,15 @@
     padding-right: 10px;
 }
 
-.name-heading, .phone-heading {
+.name-heading,
+.phone-heading {
     font-size: 1rem;
     font-weight: 600;
     color: #808080;
     text-transform: uppercase;
+}
+
+.delete-btn {
+    background: #fa9c9c;
+    color: #000;
 }
