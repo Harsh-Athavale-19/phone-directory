@@ -3,33 +3,42 @@ import Header from "./Header";
 import "./AddSubscribers.css";
 
 class AddSubscribers extends Component {
-
-    constructor(){
-        super()
-        this.state={
-            id:0,
-            name:'',
-            phone:''
-        }
+    constructor() {
+        super();
+        this.state = {
+            id: 0,
+            name: "",
+            phone: "",
+        };
     }
-    inputChangedHandler =(e)=>{
-        const state  =this.state
-        state[e.target.name] = e.target.value
-        this.setState(state)
-        console.log(this.state);
-    }
+    inputChangedHandler = (e) => {
+        const state = this.state;
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+        // console.log(this.state);
+    };
 
+    onFormSubmitted = (e) => {
+        e.preventDefault();
+        this.props.addSubscriberHandler(this.state);
+        this.setState({id:0,name:'',phone:''});
+    };
 
     render() {
-        const{name,phone}=this.state
+        const { name, phone } = this.state;
         return (
-            <div>
+            <div className="component-container">
                 <Header heading="Add Subscribers" />
+
                 <div className="component-body-container">
                     <button className="custom-btn">Back</button>
-                    <form className="subscriber-form">
+
+                    <form
+                        className="subscriber-form"
+                        onSubmit={this.onFormSubmitted.bind(this)}
+                    >
                         <label htmlFor="name" className="label-control">
-                            Name
+                            Name:
                         </label>
                         <br />
                         <input
@@ -42,7 +51,7 @@ class AddSubscribers extends Component {
                         <br />
                         <br />
                         <label htmlFor="phone" className="label-control">
-                            Phone
+                            Phone:
                         </label>
                         <br />
                         <input
@@ -54,15 +63,21 @@ class AddSubscribers extends Component {
                         />
                         <br />
                         <br />
+
                         <div className="subscriber-info-container">
                             <span className="subscriber-to-add-heading">
                                 Subscriber to be added:
                             </span>
                             <br />
-                            <span className="subscriber-info">Name:{name} </span>
+                            <span className="subscriber-info">
+                                Name:{name}
+                            </span>
                             <br />
-                            <span className="subscriber-info">Phone:{phone} </span>
+                            <span className="subscriber-info">
+                                Phone:{phone}
+                            </span>
                         </div>
+
                         <button type="submit" className="custom-btn add-btn">
                             Add
                         </button>
